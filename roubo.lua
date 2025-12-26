@@ -2370,12 +2370,12 @@ local CamShake = require(game.ReplicatedStorage.Util.CameraShaker)
 CamShake:Stop()
 
     HttpService = game:GetService("HttpService")
-    local i = "Sla Hub"
+    local i = "SIX HUB"
     local j = "-BloxFruit.json"
     local l = game.Players.LocalPlayer.Name .. j
     if Adel then
         HttpService = game:GetService("HttpService")
-        local i = "Sla Hub"
+        local i = "SIX HUB"
         local j = "-BloxFruit.json"
         local l = game.Players.LocalPlayer.Name .. j
     end
@@ -2510,24 +2510,24 @@ CamShake:Stop()
     end
 
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Window = OrionLib:MakeWindow({Name = "Sla Hub", HidePremium = false, IntroText = "", SaveConfig = true, ConfigFolder = "Sla Hub"})
+local Window = OrionLib:MakeWindow({Name = "SIX HUB", HidePremium = false, IntroText = "", SaveConfig = true, ConfigFolder = "SIX HUB"})
 
 OrionLib:MakeNotification({
-	Name = "Sla Hub",
+	Name = "SIX HUB",
 	Content = "Choose Teams Bro?",
 	Image = "rbxassetid://119980140458596",
 	Time = 7
 })
 
 OrionLib:MakeNotification({
-	Name = "Sla Hub",
-	Content = "Sla Hub",
+	Name = "SIX HUB",
+	Content = "SIX HUB",
 	Image = "rbxassetid://119980140458596",
 	Time = 25
 })
 
 OrionLib:MakeNotification({
-    Name = "Sla Hub",
+    Name = "SIX HUB",
     Content = "Please Wait loading script...,Do not enable any function",
     Image = "rbxassetid://119980140458596",
     Time = 5
@@ -2624,7 +2624,7 @@ local Section = W:AddSection({
     Name = "Update"
 })
 
-W:AddLabel("[+] Sla Hub is HERE!")
+W:AddLabel("[+] SIX HUB is HERE!")
 W:AddLabel("[+] Best AutoFarm!")
 W:AddLabel("[+] Up and Growing")
 W:AddLabel("[+] Smooth")
@@ -8337,13 +8337,13 @@ pcall(function()
         if _G.AutoEliteHunter then
             if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
                 OrionLib:MakeNotification({
-                    Name = "Sla Hub(Noitification)",
+                    Name = "SIX HUB(Noitification)",
                     Content = "[EN] : Please cancel the farrm level quest (if any)",
                     Image = "rbxassetid://119980140458596",
                     Time = 9
                 })
                 OrionLib:MakeNotification({
-                    Name = "Sla Hub(Noitification)",
+                    Name = "SIX HUB(Noitification)",
                     Content = "[VN] : Làm ơn hủy nhiệm vụ farrm level(nếu có)",
                     Image = "rbxassetid://119980140458596",
                     Time = 9
@@ -8512,7 +8512,7 @@ spawn(function()
             if _G.AutoObservation then
                 if game:GetService("Players").LocalPlayer.VisionRadius.Value >= 3000 then
                     OrionLib:MakeNotification({
-                        Name = "Sla Hub BOT",
+                        Name = "SIX HUB BOT",
                         Content = "!!You Are Max Point!!",
                         Image = "rbxassetid://14919714384",
                         Time = 5
@@ -8661,7 +8661,7 @@ spawn(function()
         if Mybeli <= 2500000 or MyFragment <= 5000 then
             wait(2.0)
             OrionLib:MakeNotification({
-                Name = "Sla Hub",
+                Name = "SIX HUB",
                 Content = "You not have beli or fragment!",
                 Image = "rbxassetid://119980140458596",
                 Time = 5
@@ -8822,7 +8822,7 @@ spawn(function()
                         end
                     else
                         OrionLib:MakeNotification({
-                            Name = "Sla Hub BOT",
+                            Name = "SIX HUB BOT",
                             Content = "Not Have Superhuman",
                             Image = "rbxassetid://14919714384",
                             Time = 5
@@ -8835,7 +8835,7 @@ spawn(function()
                         end
                     else
                         OrionLib:MakeNotification({
-                            Name = "Sla Hub BOT",
+                            Name = "SIX HUB BOT",
                             Content = "Not Have Death Step",
                             Image = "rbxassetid://14919714384",
                             Time = 5
@@ -8848,7 +8848,7 @@ spawn(function()
                         end
                     else
                         OrionLib:MakeNotification({
-                            Name = "Sla Hub BOT",
+                            Name = "SIX HUB BOT",
                             Content = "Not Have SharkMan Karate",
                             Image = "rbxassetid://14919714384",
                             Time = 5
@@ -8861,7 +8861,7 @@ spawn(function()
                         end
                     else
                         gOrionLib:MakeNotification({
-                            Name = "Sla Hub BOT",
+                            Name = "SIX HUB BOT",
                             Content = "Not Have Electric Claw",
                             Image = "rbxassetid://14919714384",
                             Time = 5
@@ -8872,7 +8872,7 @@ spawn(function()
                         if game.Players.LocalPlayer.Backpack:FindFirstChild("Dragon Talon") and game.Players.LocalPlayer.Backpack:FindFirstChild("Dragon Talon").Level.Value >= 400 or game.Players.LocalPlayer.Character:FindFirstChild("Dragon Talon") and game.Players.LocalPlayer.Character:FindFirstChild("Dragon Talon").Level.Value >= 400 then
                             if string.find(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman",true), "Bring") then
                                 OrionLib:MakeNotification({
-                                    Name = "Sla Hub BOT",
+                                    Name = "SIX HUB BOT",
                                     Content = "Not Have Enough Material",
                                     Image = "rbxassetid://14919714384",
                                     Time = 5
@@ -8884,7 +8884,7 @@ spawn(function()
                         end
                     else
                         OrionLib:MakeNotification({
-                            Name = "Sla Hub BOT",
+                            Name = "SIX HUB BOT",
                             Content = "You Not Have Dragon Talon! ",
                             Image = "rbxassetid://14919714384",
                             Time = 5
@@ -11283,7 +11283,7 @@ spawn(function()
             if game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709149052" or game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709149431" then
                 wait(2.0)
                 OrionLib:MakeNotification({
-                    Name = "Sla Hub",
+                    Name = "SIX HUB",
                     Content = "Turn Off Hop Find Moon Please",
                     Image = "rbxassetid://119980140458596",
                     Time = 5
@@ -11291,7 +11291,7 @@ spawn(function()
             elseif game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709143733" then
                 Hop()
                 OrionLib:MakeNotification({
-                    Name = "Sla Hub",
+                    Name = "SIX HUB",
                     Content = "Hop Server",
                     Image = "rbxassetid://119980140458596",
                     Time = 5
@@ -11299,7 +11299,7 @@ spawn(function()
             elseif game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709150401" then
                 Hop()
                 OrionLib:MakeNotification({
-                    Name = "Sla Hub",
+                    Name = "SIX HUB",
                     Content = "Hop Server",
                     Image = "rbxassetid://119980140458596",
                     Time = 5
@@ -11307,7 +11307,7 @@ spawn(function()
             elseif game:GetService("Lighting").Sky.MoonTextureId=="http://www.roblox.com/asset/?id=9709149680" then
                 Hop()
                 OrionLib:MakeNotification({
-                    Name = "Sla Hub",
+                    Name = "SIX HUB",
                     Content = "Hop Server",
                     Image = "rbxassetid://119980140458596",
                     Time = 5
@@ -11320,7 +11320,7 @@ spawn(function()
     end)
 
 OrionLib:MakeNotification({
-        Name = "Sla Hub",
+        Name = "SIX HUB",
         Content = "Loading script complete!, You can now enable the function!",
         Image = "rbxassetid://119980140458596",
         Time = 5
@@ -11363,7 +11363,7 @@ end)
 OrionLib:Init()
 
 OrionLib:MakeNotification({
-    Name = "Sla Hub",
+    Name = "SIX HUB",
     Content = "Loading Config Complete!!",
     Image = "rbxassetid://119980140458596",
     Time = 5
