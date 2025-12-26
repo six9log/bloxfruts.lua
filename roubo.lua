@@ -1,122 +1,141 @@
--- LocalScript (coloque em StarterGui ou StarterPlayerScripts no Roblox Studio)
--- Propósito: exemplo educativo para simular ganho de XP e level-up localmente.
--- NÃO usar em jogos online para automatizar jogabilidade real.
-
-local Players = game:GetService("Players")
-local RunService = game:GetService("RunService")
-local player = Players.LocalPlayer
-local playerGui = player:WaitForChild("PlayerGui")
-
--- Estado local (apenas no cliente, para testes)
-local level = 1
-local xp = 0
-local xpToNext = function(l) return 100 + (l - 1) * 50 end -- fórmula simples
-
--- Criar GUI
-local screenGui = Instance.new("ScreenGui")
-screenGui.Name = "XPTrainerGui"
-screenGui.ResetOnSpawn = false
-screenGui.Parent = playerGui
-
-local frame = Instance.new("Frame")
-frame.Size = UDim2.new(0, 300, 0, 160)
-frame.Position = UDim2.new(0, 20, 0, 20)
-frame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-frame.BorderSizePixel = 0
-frame.Parent = screenGui
-
-local title = Instance.new("TextLabel")
-title.Size = UDim2.new(1, -20, 0, 30)
-title.Position = UDim2.new(0, 10, 0, 8)
-title.BackgroundTransparency = 1
-title.Text = "Simulador de XP (modelo educativo)"
-title.TextColor3 = Color3.fromRGB(255,255,255)
-title.Font = Enum.Font.SourceSansBold
-title.TextScaled = true
-title.Parent = frame
-
-local levelLabel = Instance.new("TextLabel")
-levelLabel.Size = UDim2.new(0.5, -15, 0, 30)
-levelLabel.Position = UDim2.new(0, 10, 0, 46)
-levelLabel.BackgroundTransparency = 1
-levelLabel.TextColor3 = Color3.fromRGB(200,200,200)
-levelLabel.Font = Enum.Font.SourceSans
-levelLabel.Text = "Nível: "..tostring(level)
-levelLabel.TextScaled = true
-levelLabel.Parent = frame
-
-local xpLabel = Instance.new("TextLabel")
-xpLabel.Size = UDim2.new(0.5, -15, 0, 30)
-xpLabel.Position = UDim2.new(0.5, 5, 0, 46)
-xpLabel.BackgroundTransparency = 1
-xpLabel.TextColor3 = Color3.fromRGB(200,200,200)
-xpLabel.Font = Enum.Font.SourceSans
-xpLabel.Text = "XP: "..tostring(xp).."/"..tostring(xpToNext(level))
-xpLabel.TextScaled = true
-xpLabel.Parent = frame
-
-local gainButton = Instance.new("TextButton")
-gainButton.Size = UDim2.new(1, -20, 0, 36)
-gainButton.Position = UDim2.new(0, 10, 0, 86)
-gainButton.BackgroundColor3 = Color3.fromRGB(40, 120, 200)
-gainButton.TextColor3 = Color3.fromRGB(255,255,255)
-gainButton.Font = Enum.Font.SourceSansBold
-gainButton.Text = "Ganhar 30 XP (simulado)"
-gainButton.Parent = frame
-
-local autoToggle = Instance.new("TextButton")
-autoToggle.Size = UDim2.new(1, -20, 0, 28)
-autoToggle.Position = UDim2.new(0, 10, 0, 128)
-autoToggle.BackgroundColor3 = Color3.fromRGB(60,60,60)
-autoToggle.TextColor3 = Color3.fromRGB(255,255,255)
-autoToggle.Font = Enum.Font.SourceSans
-autoToggle.Text = "Auto-treino: DESLIGADO"
-autoToggle.Parent = frame
-
-local autoEnabled = false
-local autoXPPerTick = 10
-local autoInterval = 1 -- segundos
-local accumulated = 0
-
-local function updateLabels()
-	xpLabel.Text = "XP: "..tostring(math.floor(xp)).."/"..tostring(xpToNext(level))
-	levelLabel.Text = "Nível: "..tostring(level)
+local success, redzlib = pcall(function()
+    return loadstring(game:HttpGet("https://raw.githubusercontent.com/tbao143/Library-ui/main/Redzhubui.lua", true))()
+end)
+if not success or not redzlib then
+    warn("Falha ao carregar RedzLib. Verifique a URL ou se o executor permite HttpGet.")
+    return
 end
 
-local function tryLevelUp()
-	while xp >= xpToNext(level) do
-		xp = xp - xpToNext(level)
-		level = level + 1
-		-- feedback local (pode adicionar efeitos visuais)
-		print("Level up! Novo nível:", level)
-	end
-	updateLabels()
-end
+-- Cria janela
+local Window = redzlib:MakeWindow({
+    Title = "FIAT HUB: Blox Fruits BETA⚠️",
+    SubTitle = "by FIAT",
+    SaveFolder = "testando | redz lib v5"
+})
 
-gainButton.MouseButton1Click:Connect(function()
-	xp = xp + 30
-	tryLevelUp()
+-- Botão minimizar (exemplo)
+Window:AddMinimizeButton({
+    Button = { Image = "rbxassetid://71014873973869", BackgroundTransparency = 0 },
+    Corner = { CornerRadius = UDim.new(35, 1) },
+})
+
+-- Aba Settings (mantive nome)
+local SettingsTab = Window:MakeTab({"Settings"})
+
+-- Aba Farm
+local FarmTab = Window:MakeTab({"Farm"})
+FarmTab.TabIcon = "rbxassetid://1234567890" -- substituir por asset válido
+
+-- Toggles da aba Farm (placeholders se quiser implementar depois)
+local FarmToggle = FarmTab:AddToggle({ Name = "Farm Level Beta ⚠️", Description = "", Default = false })
+FarmToggle:Callback(function(value)
+    -- placeholder: ativar rotina de farm quando quiser
 end)
 
-autoToggle.MouseButton1Click:Connect(function()
-	autoEnabled = not autoEnabled
-	autoToggle.Text = "Auto-treino: "..(autoEnabled and "LIGADO" or "DESLIGADO")
-	autoToggle.BackgroundColor3 = autoEnabled and Color3.fromRGB(40,150,70) or Color3.fromRGB(60,60,60)
+local KillAuraToggle = FarmTab:AddToggle({ Name = "Kill Aura ⚠️", Default = false })
+KillAuraToggle:Callback(function(value)
+    -- placeholder
 end)
 
--- Loop local para auto-treino (apenas no cliente)
-local last = tick()
-RunService.Heartbeat:Connect(function(dt)
-	if autoEnabled then
-		accumulated = accumulated + dt
-		if accumulated >= autoInterval then
-			local times = math.floor(accumulated / autoInterval)
-			accumulated = accumulated - times * autoInterval
-			xp = xp + (autoXPPerTick * times)
-			tryLevelUp()
-		end
-	end
+local FastAttackToggle = FarmTab:AddToggle({ Name = "Fast Attack ⚠️", Default = false })
+FastAttackToggle:Callback(function(value)
+    -- placeholder
 end)
 
--- Inicializa labels
-updateLabels()
+local AttackSpeedDropdown = FarmTab:AddDropdown({
+    Name = "Fast Attack Speed",
+    Description = "",
+    Options = {"0.1⚠️", "0.2⚠️", "0.6⚠️", "2✅"},
+    Default = "0.1⚠️",
+    Callback = function(val)
+        -- usar val se implementar o fast attack
+    end
+})
+
+-- Aba Discord
+local DiscordTab = Window:MakeTab({"Discord"})
+DiscordTab.TabIcon = "rbxassetid://18751483361"
+
+DiscordTab:AddButton({
+    Name = "Copiar link Discord",
+    Callback = function()
+        local ok, err = pcall(function() setclipboard("https://discord.gg/rWx9Y9xD") end)
+        if ok then
+            Window:Notify({ Title = "Sucesso!", Text = "link na área de transferência :D" })
+        else
+            Window:Notify({ Title = "Erro", Text = "Não foi possível copiar: "..tostring(err) })
+        end
+    end
+})
+
+-- Aba OP
+local OPTab = Window:MakeTab({"OP"})
+OPTab.TabIcon = "rbxassetid://9876543210"
+
+local SpinFrutaToggle = OPTab:AddToggle({ Name = "Spin Fruta Anti Ban Beta ⚠️", Default = false })
+SpinFrutaToggle:Callback(function(value)
+    -- placeholder
+end)
+
+-- Anti Lag: tenta desativar efeitos que tenham propriedade Enabled
+local AntiLagToggle = OPTab:AddToggle({ Name = "Anti Lag", Default = false })
+AntiLagToggle:Callback(function(value)
+    local Lighting = game:GetService("Lighting")
+    for _, obj in pairs(Lighting:GetChildren()) do
+        -- só mexe se a propriedade Enabled existir
+        if obj and obj:IsA("Instance") then
+            if value then
+                pcall(function()
+                    if obj.Enabled ~= nil then obj.Enabled = false end
+                end)
+            else
+                pcall(function()
+                    if obj.Enabled ~= nil then obj.Enabled = true end
+                end)
+            end
+        end
+    end
+end)
+
+-- Speed Bomba (corrigido para não acumular conexões)
+local SpeedBombaToggle = OPTab:AddToggle({ Name = "Speed Bomba ⚠️", Default = false })
+local _speedConn = nil
+local originalWalkSpeed = nil
+
+SpeedBombaToggle:Callback(function(value)
+    local player = game:GetService("Players").LocalPlayer
+    if not player then return end
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:FindFirstChildOfClass("Humanoid")
+    if not humanoid then return end
+
+    if value then
+        -- salva valor original uma vez
+        if originalWalkSpeed == nil then
+            originalWalkSpeed = humanoid.WalkSpeed
+        end
+        humanoid.WalkSpeed = 200
+        -- conecta somente uma vez
+        if not _speedConn then
+            _speedConn = humanoid:GetPropertyChangedSignal("MoveDirection"):Connect(function()
+                -- mantém enquanto estiver se movendo
+                if humanoid.MoveDirection and humanoid.MoveDirection.Magnitude > 0 then
+                    humanoid.WalkSpeed = 200
+                end
+            end)
+        end
+    else
+        -- restaura e desconecta
+        if originalWalkSpeed then
+            humanoid.WalkSpeed = originalWalkSpeed
+        else
+            humanoid.WalkSpeed = 16
+        end
+        if _speedConn then
+            _speedConn:Disconnect()
+            _speedConn = nil
+        end
+    end
+end)
+
+-- Fim do script
